@@ -1,17 +1,21 @@
-const { crawlPage } = require('./crawl')
+const { crawlPage } = require("./crawl");
 
-function main() {
+async function main() {
   console.log(process.argv);
   if (process.argv.length < 3) {
     console.log("no website provided");
-    process.exit()
+    process.exit();
   } else if (process.argv.length > 3) {
     console.log("too many command line args");
-    process.exit()
+    process.exit();
   }
-  const baseURL = process.argv[2]
-  console.log(`starting crawl ${baseURL}`)
-  crawlPage(baseURL)
+  const baseURL = process.argv[2];
+  console.log(`starting crawl ${baseURL}`);
+  const pages = await crawlPage(baseURL, baseURL, {});
+
+  for (const page of Object.entries(pages)) {
+    console.log(page);
+  }
 }
 
 main();
