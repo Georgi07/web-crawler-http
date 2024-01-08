@@ -46,6 +46,7 @@ async function crawlPage(baseURL, currentURL, pages) {
     for (const nextURL of nextURLs) {
       pages = await crawlPage(baseURL, nextURL, pages);
     }
+    return pages;
   } catch (err) {
     console.log(`error in fetch: ${err.message}, on page ${currentURL}`);
   }
@@ -80,7 +81,6 @@ function getURLsFromHTML(htmlBody, baseURL) {
 
 function normalizeURL(url) {
   const urlObj = new URL(url);
-
   const hostPath = `${urlObj.hostname}${urlObj.pathname}`;
   // .slice(-1) in js this returns the last character of string
   if (hostPath.length > 0 && hostPath.slice(-1) === "/") {
