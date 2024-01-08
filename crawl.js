@@ -15,7 +15,7 @@ async function crawlPage(baseURL, currentURL, pages) {
 
   if (pages[normalizedCurrentURL] > 0) {
     pages[normalizedCurrentURL]++;
-    return pages;
+    return pages
   }
 
   pages[normalizedCurrentURL] = 1;
